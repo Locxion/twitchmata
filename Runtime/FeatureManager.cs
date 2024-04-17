@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using TwitchLib.Unity;
 
 namespace Twitchmata {
@@ -37,8 +38,21 @@ namespace Twitchmata {
             get { return this.Connection.UserManager; }
         }
 
+        /// <summary>
+        /// Sends a Message to Chat
+        /// </summary>
+        /// <param name="message">Message to Send</param>
         public void SendChatMessage(string message) {
             this.Connection.Client.SendMessage(this.Connection.ConnectionConfig.ChannelName, message);
+        }
+
+        /// <summary>
+        /// Uses Twitch Feature to Reply to a Message
+        /// </summary>
+        /// <param name="messageId">Message Id you reply to</param>
+        /// <param name="message">Message to Reply</param>
+        public void ReplyToChatMessage(string messageId, string message) {
+            this.Connection.Client.SendReply(this.Connection.ConnectionConfig.ChannelName, messageId, message);
         }
         #endregion
 
